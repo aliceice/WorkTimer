@@ -23,6 +23,22 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.6.0</version>
+                <configuration>
+                    <mainClass>de.aice.worktimer.ui.WorkTimerApplication</mainClass>
+                    <jfxMainAppJarName>${project.parent.name}-${project.version}.jar</jfxMainAppJarName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <configuration>

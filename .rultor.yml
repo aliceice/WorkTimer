@@ -18,4 +18,3 @@ release:
     - "mvn versions:set \"-DnewVersion=${tag}\""
     - "mvn clean verify -Pcode-quality"
     - "git commit -am \"${tag}\""
-

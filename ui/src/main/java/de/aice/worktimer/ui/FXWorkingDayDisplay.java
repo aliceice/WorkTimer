@@ -1,6 +1,7 @@
 package de.aice.worktimer.ui;
 
-import java.io.IOException;
+import static de.aice.worktimer.util.Exceptions.unchecked;
+
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -35,25 +36,21 @@ public final class FXWorkingDayDisplay implements WorkingDayDisplay {
         this.parent.setScene(new Scene(tryLoadFXPane()));
     }
 
-    private String format(Duration duration) {
-        return LocalTime.MIDNIGHT.plus(duration)
-                                 .format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-    }
-
     private Pane tryLoadFXPane() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/FXWorkingDayDisplay.fxml"));
         loader.setController(this);
-        try {
-            return loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return unchecked(loader::load);
     }
 
     @Override
     public void showRemainingTime(Duration remainingTime) {
         String formattedTime = format(remainingTime);
         Platform.runLater(() -> this.label.setText(formattedTime));
+    }
+
+    private String format(Duration duration) {
+        return LocalTime.MIDNIGHT.plus(duration)
+                                 .format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
     @Override

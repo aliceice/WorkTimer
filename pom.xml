@@ -188,6 +188,7 @@
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
+                        <inherited>true</inherited>
                         <executions>
                             <execution>
                                 <goals>

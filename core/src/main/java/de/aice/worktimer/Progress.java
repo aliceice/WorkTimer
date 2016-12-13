@@ -23,7 +23,7 @@ public final class Progress {
 
     @Override
     public int hashCode() {
-        return Objects.hash(workingTime, remainingTime);
+        return Objects.hash(this.workingTime, this.remainingTime);
     }
 
     @Override
@@ -34,8 +34,8 @@ public final class Progress {
         if (o == null || getClass() != o.getClass())
             return false;
 
-        Progress progress = (Progress) o;
-        return Objects.equals(workingTime, progress.workingTime)
-               && Objects.equals(remainingTime, progress.remainingTime);
+        Progress other = (Progress) o;
+        return Objects.equals(this.workingTime, other.workingTime)
+               && Objects.equals(this.remainingTime, other.remainingTime);
     }
 }

@@ -1,19 +1,18 @@
 package de.aice.worktimer;
 
+import java.time.Duration;
+import java.time.LocalTime;
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
-import java.time.Duration;
-import java.time.LocalTime;
-
-import org.junit.Test;
-
 public final class WorkingDayTest {
 
-    private final LocalTime           currentTime = LocalTime.of(9, 0);
-    private final Duration            workingTime = Duration.ofHours(8).plusMinutes(0);
-    private final WorkingDay          subject     = WorkingDay.fixed(this.workingTime, this.currentTime);
+    private final LocalTime  currentTime = LocalTime.of(9, 0);
+    private final Duration   workingTime = Duration.ofHours(8).plusMinutes(0);
+    private final WorkingDay subject     = WorkingDay.fixed(this.workingTime, this.currentTime);
 
     @Test
     public void canCalculateRemainingTime() throws Exception {

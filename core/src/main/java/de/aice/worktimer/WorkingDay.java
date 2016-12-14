@@ -1,13 +1,17 @@
 package de.aice.worktimer;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.function.Supplier;
 
 public final class WorkingDay {
     
     public static WorkingDay fixed(Duration workingTime, LocalTime currentTime) {
-        return new WorkingDay(workingTime, LocalTime.of(8, 0), () -> currentTime);
+        return new WorkingDay(workingTime,
+                              LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 0)),
+                              () -> LocalDateTime.of(LocalDate.now(), currentTime));
     }
     
     public static WorkingDay with(Duration workingTime) {
@@ -15,14 +19,14 @@ public final class WorkingDay {
     }
     
     public static WorkingDay with(Duration workingTime, LocalTime currentTime) {
-        return new WorkingDay(workingTime, currentTime, LocalTime::now);
+        return new WorkingDay(workingTime, LocalDateTime.of(LocalDate.now(), currentTime), LocalDateTime::now);
     }
     
-    private final Duration            workingTime;
-    private final LocalTime           endTime;
-    private final Supplier<LocalTime> currentTime;
+    private final Duration                workingTime;
+    private final LocalDateTime           endTime;
+    private final Supplier<LocalDateTime> currentTime;
     
-    private WorkingDay(Duration workingTime, LocalTime startTime, Supplier<LocalTime> currentTime) {
+    private WorkingDay(Duration workingTime, LocalDateTime startTime, Supplier<LocalDateTime> currentTime) {
         this.workingTime = workingTime;
         this.endTime = startTime.plus(this.workingTime);
         this.currentTime = currentTime;

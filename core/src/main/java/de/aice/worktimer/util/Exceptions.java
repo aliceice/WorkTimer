@@ -1,5 +1,8 @@
 package de.aice.worktimer.util;
 
+/**
+ * @todo #1 Maybe move to aliceice-lang?
+ */
 public final class Exceptions {
 
     private Exceptions() {

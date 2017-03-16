@@ -1,12 +1,10 @@
 package de.aice.worktimer.ui;
 
-import static de.aice.worktimer.util.Exceptions.unchecked;
-
+import de.aice.worktimer.Progress;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
-import de.aice.worktimer.Progress;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,15 +29,15 @@ public final class FXWorkingDayDisplay implements WorkingDayDisplay {
     }
 
     @Override
-    public void open() {
+    public void open() throws IOException {
         this.parent.setTitle("WorkTimer FX");
         this.parent.setScene(new Scene(tryLoadFXPane()));
     }
 
-    private Pane tryLoadFXPane() {
+    private Pane tryLoadFXPane() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/FXWorkingDayDisplay.fxml"));
         loader.setController(this);
-        return unchecked(loader::load);
+        return loader.load();
     }
 
     @Override

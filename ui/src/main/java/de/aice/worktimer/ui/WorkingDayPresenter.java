@@ -1,5 +1,6 @@
 package de.aice.worktimer.ui;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import de.aice.worktimer.AutomaticClock;
@@ -22,7 +23,7 @@ public final class WorkingDayPresenter {
         this.display = display;
     }
 
-    public void start() {
+    public void start() throws IOException {
         this.display.open();
         this.clock.onTick(this::updateDisplay);
         this.clock.start();

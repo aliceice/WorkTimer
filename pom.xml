@@ -158,6 +158,9 @@
         </plugins>
     </build>
 
+    <!--
+    @todo: #16 Should be built into standard build lifecycle instead of using a separate profile.
+    -->
     <profiles>
         <profile>
             <id>code-quality</id>
